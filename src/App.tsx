@@ -5,13 +5,11 @@ function App() {
   const { data } = useQuery({
     queryKey: ["weather"],
     queryFn: () => getWeather({
-      lat: 50,
-      lon: 50
+      lat: 10,
+      lon: 25
     })
   })
   return (
-
-
     <>
       {JSON.stringify(data)}
     </>

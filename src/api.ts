@@ -1,3 +1,5 @@
+import { weatherSchema } from "./schemas/weatherSchema";
+
 type GetWeatherProps = {
   lat: number;
   lon: number;
@@ -10,5 +12,5 @@ export async function getWeather({ lat, lon }: GetWeatherProps) {
     `https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${lon}&units=metric&exclude=minutely,alerts&appid=${API_KEY}`
   );
   const data = await res.json();
-  return data;
+  return weatherSchema.parse(data);
 }
