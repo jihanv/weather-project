@@ -1,6 +1,7 @@
-import { useQuery } from "@tanstack/react-query"
-import { getWeather } from "./api"
+// import { useQuery } from "@tanstack/react-query"
+// import { getWeather } from "./api"
 import Card from "./components/cards/Card"
+import DailyForecast from "./components/cards/DailyForecast"
 import mock_weather from "./mockData/mock_weather.json"
 
 
@@ -18,9 +19,9 @@ function App() {
 
     <>
       <div className="flex flex-col gap-8">
-        <Card>{JSON.stringify(data?.current).slice(0, 100)}</Card>
-        <Card>{JSON.stringify(data?.hourly).slice(0, 100)}</Card>
-        <Card>{JSON.stringify(data?.daily).slice(0, 100)}</Card>
+        <Card title="Current Weather">{JSON.stringify(data?.current).slice(0, 100)}</Card>
+        <Card title="Hourly Forecast (48 hours)">{JSON.stringify(data?.hourly).slice(0, 100)}</Card>
+        <DailyForecast />
       </div>
     </>
   )
