@@ -1,6 +1,7 @@
 
 import Card from './Card'
 import mock_weather from "../../mockData/mock_weather.json"
+import WeatherIcon from '../WeatherIcon'
 // import { useQuery } from '@tanstack/react-query'
 // import { getWeather } from '../../api'
 
@@ -20,7 +21,6 @@ export default function DailyForecast() {
 
         <>
             <Card title="Daily Forecast" childrenClassName='flex flex-col gap-4'>
-
                 {data.daily.map((day) => {
                     return (
                         <div
@@ -31,10 +31,7 @@ export default function DailyForecast() {
                                 weekday: "short",
 
                             })}</p>
-                            <img
-                                className='size-8'
-                                src={`https://openweathermap.org/img/wn/${day.weather[0].icon}.png`}
-                                alt="Weather Icon" />
+                            <WeatherIcon src={day.weather[0].icon} alt="Weather Icon"></WeatherIcon>
                             <p>{Math.round(day.temp.day)}°C</p>
                             <p className='text-gray-500/75'>{Math.round(day.temp.min)}°C</p>
                             <p className='text-gray-500/75'>{Math.round(day.temp.max)}°C</p>
