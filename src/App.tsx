@@ -5,6 +5,7 @@ import AdditionalInformation from "./components/cards/AdditionalInformation"
 import CurrentWeather from "./components/cards/CurrentWeather"
 import DailyForecast from "./components/cards/DailyForecast"
 import HourlyForecast from "./components/cards/HourlyForecast"
+import Map from "./components/Map"
 // import mock_weather from "./mockData/mock_weather.json"
 
 
@@ -22,6 +23,7 @@ function App() {
 
     <>
       <div className="flex flex-col gap-8">
+        <Map />
         <CurrentWeather />
         <HourlyForecast />
         <DailyForecast />
