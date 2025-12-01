@@ -1,5 +1,4 @@
 import Card from "./Card";
-import mock_weather from "../../mockData/mock_weather.json"
 import Sunrise from "/src/assets/sunrise.svg?react"
 import Sunset from "/src/assets/sunset.svg?react"
 import Cloud from "/src/assets/cloud.svg?react"
@@ -10,18 +9,19 @@ import UpArrow from "/src/assets/uparrow.svg?react"
 
 
 
-// import { useSuspenseQuery } from '@tanstack/react-query'
-// import { getWeather } from '../../api'
+import { useSuspenseQuery } from '@tanstack/react-query'
+import { getWeather } from '../../api'
+import type { ForecastProps } from "../../types";
 
-export default function AdditionalInformation() {
-    // const { data } = useSuspenseQuery({
-    //     queryKey: ["weather"],
-    //     queryFn: () => getWeather({
-    //         lat: 10,
-    //         lon: 25
-    //     })
-    // })
-    const data = mock_weather
+export default function AdditionalInformation({ coords }: ForecastProps) {
+    const { data } = useSuspenseQuery({
+        queryKey: ["weather", coords],
+        queryFn: () => getWeather({
+            lat: coords.lat,
+            lon: coords.long
+        })
+    })
+    // const data = mock_weather
     return (
         <>
             <Card title="Additional Weather Info " childrenClassName='flex flex-col gap-8'>

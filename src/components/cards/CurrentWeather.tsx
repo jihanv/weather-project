@@ -4,13 +4,14 @@ import WeatherIcon from '../WeatherIcon'
 
 import { useSuspenseQuery } from '@tanstack/react-query'
 import { getWeather } from '../../api'
+import type { ForecastProps } from '../../types'
 
-export default function CurrentWeather() {
+export default function CurrentWeather({ coords }: ForecastProps) {
     const { data } = useSuspenseQuery({
-        queryKey: ["weather"],
+        queryKey: ["weather", coords],
         queryFn: () => getWeather({
-            lat: 10,
-            lon: 25
+            lat: coords.lat,
+            lon: coords.long
         })
     })
     // const data = mock_weather
