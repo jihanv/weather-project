@@ -24,5 +24,12 @@ export default function Map() {
 function MapClick() {
     const map = useMap()
 
+    map.on("click", (e) => {
+        // Get the coordinates from the e event
+        const { lat, lng } = e.latlng
+        //Pan on click
+        map.panTo([lat, lng])
+    })
+
     return null
 }
