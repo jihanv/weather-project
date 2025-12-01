@@ -1,22 +1,21 @@
 
 import Card from './Card'
-import mock_weather from "../../mockData/mock_weather.json"
 import WeatherIcon from '../WeatherIcon'
-// import { useQuery } from '@tanstack/react-query'
-// import { getWeather } from '../../api'
+import { useSuspenseQuery } from '@tanstack/react-query'
+import { getWeather } from '../../api'
 
 // type Props = { }
 
 export default function DailyForecast() {
 
-    // const { data } = useSuspenseQuery({
-    //   queryKey: ["weather"],
-    //   queryFn: () => getWeather({
-    //     lat: 10,
-    //     lon: 25
-    //   })
-    // })
-    const data = mock_weather
+    const { data } = useSuspenseQuery({
+        queryKey: ["weather"],
+        queryFn: () => getWeather({
+            lat: 10,
+            lon: 25
+        })
+    })
+    // const data = mock_weather
     return (
 
         <>

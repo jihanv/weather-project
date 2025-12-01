@@ -1,18 +1,18 @@
 import Card from './Card'
-import mock_weather from "../../mockData/mock_weather.json"
+// import mock_weather from "../../mockData/mock_weather.json"
 import WeatherIcon from '../WeatherIcon'
-// import { useSuspenseQuery } from '@tanstack/react-query'
-// import { getWeather } from '../../api'
+import { useSuspenseQuery } from '@tanstack/react-query'
+import { getWeather } from '../../api'
 
 export default function HourlyForecast() {
-    // const { data } = useSuspenseQuery({
-    //     queryKey: ["weather"],
-    //     queryFn: () => getWeather({
-    //         lat: 10,
-    //         lon: 25
-    //     })
-    // })
-    const data = mock_weather
+    const { data } = useSuspenseQuery({
+        queryKey: ["weather"],
+        queryFn: () => getWeather({
+            lat: 10,
+            lon: 25
+        })
+    })
+    // const data = mock_weather
     return (
         <>
             <Card title="Hourly Forecast (48 Hours)" childrenClassName='flex flex-row gap-6 overflow-x-scroll'>

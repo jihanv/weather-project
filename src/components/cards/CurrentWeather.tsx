@@ -1,20 +1,19 @@
 
 import Card from './Card'
-import mock_weather from "../../mockData/mock_weather.json"
 import WeatherIcon from '../WeatherIcon'
 
-// import { useSuspenseQuery } from '@tanstack/react-query'
-// import { getWeather } from '../../api'
+import { useSuspenseQuery } from '@tanstack/react-query'
+import { getWeather } from '../../api'
 
 export default function CurrentWeather() {
-    // const { data } = useSuspenseQuery({
-    //     queryKey: ["weather"],
-    //     queryFn: () => getWeather({
-    //         lat: 10,
-    //         lon: 25
-    //     })
-    // })
-    const data = mock_weather
+    const { data } = useSuspenseQuery({
+        queryKey: ["weather"],
+        queryFn: () => getWeather({
+            lat: 10,
+            lon: 25
+        })
+    })
+    // const data = mock_weather
     return (
         <>
             <Card title="Current Weather" childrenClassName='flex flex-col items-center gap-6'>
