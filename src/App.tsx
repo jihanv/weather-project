@@ -8,6 +8,7 @@ import DailyForecast from "./components/cards/DailyForecast"
 import HourlyForecast from "./components/cards/HourlyForecast"
 import Map from "./components/Map"
 import type { Coordinates } from "./types"
+import LocationDropdown from "./components/dropdowns/LocationDropdown"
 
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
 
     <>
       <div className="flex flex-col gap-8">
+        <LocationDropdown />
         <Map coords={coords} onMapClick={onMapClick} />
         <CurrentWeather coords={coords} />
         <HourlyForecast coords={coords} />
