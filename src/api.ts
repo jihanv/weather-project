@@ -1,3 +1,4 @@
+import { GeocodeSchema } from "./schemas/geocodeSchema";
 import { weatherSchema } from "./schemas/weatherSchema";
 
 type GetWeatherProps = {
@@ -13,4 +14,12 @@ export async function getWeather({ lat, lon }: GetWeatherProps) {
   );
   const data = await res.json();
   return weatherSchema.parse(data);
+}
+
+export async function getGeocode(location: string) {
+  const res = await fetch(
+    `http://api.openweathermap.org/geo/1.0/direct?q=${location}&limit=1&appid=${API_KEY}`
+  );
+  const data = await res.json();
+  return GeocodeSchema.parse(data);
 }

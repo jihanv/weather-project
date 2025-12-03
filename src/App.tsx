@@ -9,6 +9,8 @@ import HourlyForecast from "./components/cards/HourlyForecast"
 import Map from "./components/Map"
 import type { Coordinates } from "./types"
 import LocationDropdown from "./components/dropdowns/LocationDropdown"
+import { useQuery } from "@tanstack/react-query"
+import { getGeocode } from "./api"
 
 
 function App() {
@@ -18,7 +20,12 @@ function App() {
     lat: 10,
     long: 25
   })
+  const [location, setLocation] = useState("Tokyo")
 
+  const { data } = useQuery({
+    queryKey: ["geocode", location],
+    queryFn: (() => getGeocode(location))
+  })
   const onMapClick = (lat: number, long: number) => {
     setCoords({ lat, long })
   }
