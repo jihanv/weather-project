@@ -6,18 +6,33 @@ import {
     SelectValue,
 } from "@/components/ui/select"
 
-
+const locations = [
+    "Bangkok",
+    "Tokyo",
+    "Seoul",
+    "Dubai",
+    "Manila",
+    "London",
+    "New York",
+    "Paris",
+    "Berlin",
+    "Madrid",
+    "Rome",
+    "Lisbon"
+]
 export default function LocationDropdown() {
     return (
         <>
             <Select>
                 <SelectTrigger className="w-[180px]">
-                    <SelectValue placeholder="Theme" />
+                    <SelectValue placeholder="Cities" />
                 </SelectTrigger>
                 <SelectContent className="z-1001">
-                    <SelectItem value="light">Light</SelectItem>
-                    <SelectItem value="dark">Dark</SelectItem>
-                    <SelectItem value="system">System</SelectItem>
+                    {locations.map((city) => {
+                        return (
+                            <SelectItem key={city} value={city}>{city}</SelectItem>
+                        )
+                    })}
                 </SelectContent>
             </Select>
         </>
