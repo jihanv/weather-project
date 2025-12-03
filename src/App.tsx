@@ -16,7 +16,7 @@ import { getGeocode } from "./api"
 function App() {
 
 
-  const [coords, setCoords] = useState<Coordinates>({
+  const [coordinates, setCoords] = useState<Coordinates>({
     lat: 10,
     long: 25
   })
@@ -28,7 +28,15 @@ function App() {
   })
   const onMapClick = (lat: number, long: number) => {
     setCoords({ lat, long })
+    setLocation("custom")
   }
+
+  const coords = location === "custom"
+    ? coordinates :
+    {
+      lat: data?.[0].lat ?? 0,
+      long: data?.[0].lon ?? 0
+    };
 
   return (
 
