@@ -6,6 +6,10 @@ import {
     SelectValue,
 } from "@/components/ui/select"
 
+type LocationDropdownProps = {
+    location: string,
+    setLocation: React.Dispatch<React.SetStateAction<string>>
+}
 const locations = [
     "Bangkok",
     "Tokyo",
@@ -20,10 +24,10 @@ const locations = [
     "Rome",
     "Lisbon"
 ]
-export default function LocationDropdown() {
+export default function LocationDropdown({ location, setLocation }: LocationDropdownProps) {
     return (
         <>
-            <Select>
+            <Select value={location} onValueChange={(value) => setLocation(value)}>
                 <SelectTrigger className="w-[180px]">
                     <SelectValue placeholder="Cities" />
                 </SelectTrigger>

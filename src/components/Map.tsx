@@ -14,7 +14,7 @@ export default function Map({ coords, onMapClick }: Props) {
                 center={[lat, long]}
                 zoom={5}
                 style={{ width: "700", height: "500px" }} >
-                <MapClick onMapClick={onMapClick} />
+                <MapClick onMapClick={onMapClick} coords={coords} />
                 <TileLayer
                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -27,17 +27,20 @@ export default function Map({ coords, onMapClick }: Props) {
 }
 
 type MapClickProps = {
-    onMapClick: (lat: number, long: number) => void
+    onMapClick: (lat: number, long: number) => void,
+    coords: Coordinates,
+
 }
 
-function MapClick({ onMapClick }: MapClickProps) {
+function MapClick({ onMapClick, coords }: MapClickProps) {
     const map = useMap()
+
+    //Pan on click
+    map.panTo([coords.lat, coords.long])
 
     map.on("click", (e) => {
         // Get the coordinates from the e event
         const { lat, lng } = e.latlng
-        //Pan on click
-        map.panTo([lat, lng])
         onMapClick(lat, lng)
         //Set the lat and long to where we click
     })
