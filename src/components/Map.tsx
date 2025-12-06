@@ -21,7 +21,9 @@ export default function Map({ coords, onMapClick, layer }: Props) {
                 style={{ width: "1000px", height: "500px" }} >
                 <MapClick onMapClick={onMapClick} coords={coords} />
                 <MapTileLayer />
-                <TileLayer url={`https://tile.openweathermap.org/map/${layer}/{z}/{x}/{y}.png?appid=${API_KEY}`} />
+                <TileLayer
+                    opacity={0.5}
+                    url={`https://tile.openweathermap.org/map/${layer}/{z}/{x}/{y}.png?appid=${API_KEY}`} />
                 <Marker position={[lat, long]}>
                 </Marker>
             </MapContainer>
