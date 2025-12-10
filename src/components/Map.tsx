@@ -1,8 +1,10 @@
 import { MapContainer, Marker, TileLayer, useMap } from 'react-leaflet'
 import "leaflet/dist/leaflet.css"
+import "@maptiler/leaflet-maptilersdk";
 import type { Coordinates } from '../types'
 import { useEffect } from 'react';
 import { MaptilerLayer } from "@maptiler/leaflet-maptilersdk";
+
 
 const API_KEY = import.meta.env.VITE_API_KEY;
 const MAP_TILER_KEY = import.meta.env.VITE_MAP_TILER;
@@ -60,9 +62,23 @@ function MapTileLayer() {
     useEffect(() => {
         const tileLayer = new MaptilerLayer({ style: "basic-dark", apiKey: MAP_TILER_KEY })
         tileLayer.addTo(map)
-
-        return () => { map.removeLayer(tileLayer) }
+        return () => {
+            map.removeLayer(tileLayer)
+        }
     }, [map])
+
+    // useEffect(() => {
+    //     const layer = (L as any).maptilerLayer({
+    //         apiKey: MAP_TILER_KEY,
+    //         style: "basic-v2" // ← must be a valid MapTiler style ID
+    //     });
+
+    //     layer.addTo(map);
+
+    //     return () => {
+    //         map.removeLayer(layer);
+    //     };
+    // }, [map]);
 
     return null
 }
