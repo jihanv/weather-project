@@ -4,6 +4,7 @@ import { useSuspenseQuery } from '@tanstack/react-query'
 import { Suspense } from 'react'
 import Card from './cards/Card'
 import { Slider } from './ui/slider'
+import clsx from 'clsx'
 
 type Props = {
     coords: Coordinates
@@ -37,6 +38,15 @@ function AirPollution({ coords }: Props) {
                 {Object.entries(data.list[0].components).map(([key, value]) => {
                     const pollutant = airQualityRanges[key.toUpperCase() as keyof typeof airQualityRanges];
                     const max = Math.max(pollutant["Very Poor"].min, value)
+
+                    const currentLevel = (() => {
+                        for (const [level, range] of Object.entries(pollutant)) {
+                            if (value >= range.min && (range.max === null || value <= range.max)) {
+                                return level
+                            }
+                        }
+                        return "Very Poor"
+                    })()
                     return (
                         <>
                             <Card
@@ -52,6 +62,13 @@ function AirPollution({ coords }: Props) {
                                 <div className='flex justify-between text-xs'>
                                     <p>0</p>
                                     <p>{max}</p>
+                                </div>
+                                <div className='flex justify-between'>
+                                    {Object.keys(pollutant).map((quality) => (
+                                        <span className={clsx('px-2 py-1 rounded-md text-xs font-medium', quality === currentLevel ? "bg-yellow-500 text-black" : "bg-muted-foreground")}>
+                                            {quality}
+                                        </span>
+                                    ))}
                                 </div>
                             </Card>
 
@@ -134,13 +151,13 @@ const airQualityRanges: AirQualityRanges = {
     },
 }
 
-const pollutantNameMapping: Record<Pollutant, string> = {
-    SO2: "Sulfur dioxide",
-    NO2: "Nitrogen dioxide",
-    PM10: "Particulate matter 10",
-    PM2_5: "Fine particles matter",
-    O3: "Ozone",
-    CO: "Carbon monoxide",
-    NO: "Nitrogen monoxide",
-    NH3: "Ammonia",
-}
+// const pollutantNameMapping: Record<Pollutant, string> = {
+//     SO2: "Sulfur dioxide",
+//     NO2: "Nitrogen dioxide",
+//     PM10: "Particulate matter 10",
+//     PM2_5: "Fine particles matter",
+//     O3: "Ozone",
+//     CO: "Carbon monoxide",
+//     NO: "Nitrogen monoxide",
+//     NH3: "Ammonia",
+// }
