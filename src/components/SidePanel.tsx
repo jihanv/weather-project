@@ -5,7 +5,12 @@ import { Suspense } from 'react'
 import Card from './cards/Card'
 import { Slider } from './ui/slider'
 import clsx from 'clsx'
-
+import {
+    Tooltip,
+    TooltipContent,
+    TooltipTrigger,
+} from "@/components/ui/tooltip"
+import Information from "/src/assets/information.svg?react"
 type Props = {
     coords: Coordinates
 }
@@ -34,7 +39,17 @@ function AirPollution({ coords }: Props) {
             <div className='flex flex-col gap-4'>
                 <h1 className='text-2xl font-semibold'>Air Pollution</h1>
                 <h1 className='text-5xl font-semibold'>{data.list[0].main.aqi}</h1>
-                <h1 className='text-2xl font-semibold'>AQI</h1>
+                <div className='flex items-center gap-2'>
+                    <h1 className='text-2xl font-semibold'>AQI</h1>
+                    <Tooltip>
+                        <TooltipTrigger asChild>
+                            <Information className='size-4 invert' />
+                        </TooltipTrigger>
+                        <TooltipContent className='z-2000'>
+                            <p className='max-w-xs'>Air Quality Index. Possible values: 1, 2, 3, 4, 5. Where 1 = Good, 2 = Fair, 3 = Moderate, 4 = Poor, 5 = Very Poor.</p>
+                        </TooltipContent>
+                    </Tooltip>
+                </div>
                 {Object.entries(data.list[0].components).map(([key, value]) => {
                     const pollutant = airQualityRanges[key.toUpperCase() as keyof typeof airQualityRanges];
                     const max = Math.max(pollutant["Very Poor"].min, value)
@@ -72,7 +87,17 @@ function AirPollution({ coords }: Props) {
                                 childrenClassName='flex flex-col gap-3'
                             >
                                 <div className='flex justify-between'>
-                                    <span className='text-lg font-bold capitalize'>{key}</span>
+                                    <div className='flex items-center gap-2'>
+                                        <span className='text-lg font-bold capitalize'>{key}</span>
+                                        <Tooltip>
+                                            <TooltipTrigger asChild>
+                                                <Information className='size-4 invert' />
+                                            </TooltipTrigger>
+                                            <TooltipContent className='z-2000'>
+                                                <p className='max-w-xs'>Concentration of {pollutantNameMapping[key.toUpperCase() as Pollutant]}</p>
+                                            </TooltipContent>
+                                        </Tooltip>
+                                    </div>
                                     <span className='text-lg font-semibold'>{value}</span>
                                 </div>
                                 <Slider min={0} max={max} value={[value]} disabled />
@@ -170,13 +195,13 @@ const airQualityRanges: AirQualityRanges = {
     },
 }
 
-// const pollutantNameMapping: Record<Pollutant, string> = {
-//     SO2: "Sulfur dioxide",
-//     NO2: "Nitrogen dioxide",
-//     PM10: "Particulate matter 10",
-//     PM2_5: "Fine particles matter",
-//     O3: "Ozone",
-//     CO: "Carbon monoxide",
-//     NO: "Nitrogen monoxide",
-//     NH3: "Ammonia",
-// }
+const pollutantNameMapping: Record<Pollutant, string> = {
+    SO2: "Sulfur dioxide",
+    NO2: "Nitrogen dioxide",
+    PM10: "Particulate matter 10",
+    PM2_5: "Fine particles matter",
+    O3: "Ozone",
+    CO: "Carbon monoxide",
+    NO: "Nitrogen monoxide",
+    NH3: "Ammonia",
+}
