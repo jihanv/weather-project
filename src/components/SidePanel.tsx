@@ -12,7 +12,7 @@ type Props = {
 function SidePanel(props: Props) {
     return (
         <>
-            <div className='fixed top-0 right-0 h-screen w-90 shadow-md bg-sidebar z-1001 py-8 px-4'>
+            <div className='fixed top-0 right-0 h-screen w-90 overflow-y-scroll shadow-md bg-sidebar z-1001 py-8 px-4'>
                 <Suspense>
                     <AirPollution {...props} />
                 </Suspense>
@@ -47,6 +47,23 @@ function AirPollution({ coords }: Props) {
                         }
                         return "Very Poor"
                     })()
+
+                    const qualityColor = (() => {
+                        switch (currentLevel) {
+                            case "Good":
+                                return "bg-green-500"
+                            case "Fair":
+                                return "bg-yellow-500"
+                            case "Moderate":
+                                return "bg-orange-500"
+                            case "Poor":
+                                return "bg-red-500"
+                            case "Very Poor":
+                                return "bg-purple-500"
+                            default:
+                                return "bg-zinc-500"
+                        }
+                    })()
                     return (
                         <>
                             <Card
@@ -65,7 +82,9 @@ function AirPollution({ coords }: Props) {
                                 </div>
                                 <div className='flex justify-between'>
                                     {Object.keys(pollutant).map((quality) => (
-                                        <span className={clsx('px-2 py-1 rounded-md text-xs font-medium', quality === currentLevel ? "bg-yellow-500 text-black" : "bg-muted-foreground")}>
+                                        <span className={clsx('px-2 py-1 rounded-md text-xs font-medium', quality === currentLevel
+                                            ? `${qualityColor} text-black`
+                                            : `bg-muted text-muted-foreground`)}>
                                             {quality}
                                         </span>
                                     ))}
