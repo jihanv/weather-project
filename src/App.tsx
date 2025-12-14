@@ -61,7 +61,7 @@ function App() {
             <MapTypeDropdown layer={layer} setLayer={setLayer} />
           </div>
           <button onClick={() => setIsSidePanelOpen(true)}>
-            <Hamburger className='size-8 invert' />
+            <Hamburger className='size-8 invert ml-auto' />
           </button>
         </div>
         <div className="relative">
