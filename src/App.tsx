@@ -18,6 +18,7 @@ import HourlySkeleton from "./components/skeletons/HourlySkeleton";
 import DailySkeleton from "./components/skeletons/DailySkeleton";
 import AdditionalInfoSkeleton from "./components/skeletons/AdditionalInfoSkeleton";
 import SidePanel from "./components/SidePanel";
+import Hamburger from "/src/assets/hamburger.svg?react"
 
 function App() {
   const [coordinates, setCoords] = useState<Coordinates>({
@@ -26,6 +27,7 @@ function App() {
   });
   const [layer, setLayer] = useState("clouds_new");
   const [location, setLocation] = useState("Tokyo");
+  const [isSidePanelOpen, setIsSidePanelOpen] = useState(true)
 
   const { data: geocodeData } = useQuery({
     queryKey: ["geocode", location],
@@ -49,6 +51,7 @@ function App() {
 
       <div className="flex flex-col gap-8">
         <div className="flex gap-8">
+
           <div className="flex gap-4">
             <h1 className="text-2xl font-semibold ">Location:</h1>
             <LocationDropdown location={location} setLocation={setLocation} />
@@ -57,6 +60,9 @@ function App() {
             <h1 className="text-2xl font-semibold ">Map Type:</h1>
             <MapTypeDropdown layer={layer} setLayer={setLayer} />
           </div>
+          <button onClick={() => setIsSidePanelOpen(true)}>
+            <Hamburger className='size-8 invert' />
+          </button>
         </div>
         <div className="relative">
           <Map coords={coords} onMapClick={onMapClick} layer={layer} />
@@ -75,7 +81,7 @@ function App() {
           <AdditionalInformation coords={coords} />
         </Suspense>
       </div>
-      <SidePanel coords={coords} />
+      <SidePanel isSidePanelOpen={isSidePanelOpen} setIsSidePanelOpen={setIsSidePanelOpen} coords={coords} />
 
     </>
   );
