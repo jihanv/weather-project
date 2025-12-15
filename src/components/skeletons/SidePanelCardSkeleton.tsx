@@ -9,17 +9,17 @@ function SidePanelCardSkeleton() {
                 childrenClassName='flex flex-col gap-3'
             >
                 <div className='flex justify-between'>
-                    <Skeleton className="w-12 h-7" />
-                    <Skeleton className="w-12 h-7" />
+                    <Skeleton className="w-12 h-7 bg-sidebar" />
+                    <Skeleton className="w-12 h-7 bg-sidebar" />
                 </div>
-                <Skeleton className="w-full h-1.5" />
+                <Skeleton className="w-full h-1.5 bg-sidebar" />
                 <div className='flex justify-between text-xs'>
-                    <Skeleton className="w-2 h-4" />
-                    <Skeleton className="w-2 h-4" />
+                    <Skeleton className="w-2 h-4 bg-sidebar" />
+                    <Skeleton className="w-2 h-4 bg-sidebar" />
                 </div>
                 <div className='flex justify-between'>
                     {Array.from({ length: 5 }).map((_, index) => (
-                        <Skeleton key={index} className="w-15 h-6" />
+                        <Skeleton key={index} className="w-15 h-6 bg-sidebar" />
                     ))}
                 </div>
             </Card>

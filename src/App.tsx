@@ -27,7 +27,7 @@ function App() {
   });
   const [layer, setLayer] = useState("clouds_new");
   const [location, setLocation] = useState("Tokyo");
-  const [isSidePanelOpen, setIsSidePanelOpen] = useState(true)
+  const [isSidePanelOpen, setIsSidePanelOpen] = useState(false)
 
   const { data: geocodeData } = useQuery({
     queryKey: ["geocode", location],
@@ -49,7 +49,7 @@ function App() {
   return (
     <>
 
-      <div className="flex flex-col gap-8">
+      <div className="flex flex-col gap-8 p-8 w-full lg:w-[calc(100dvw-var(--sidebar-width))]">
         <div className="flex gap-8">
 
           <div className="flex gap-4">
@@ -61,7 +61,7 @@ function App() {
             <MapTypeDropdown layer={layer} setLayer={setLayer} />
           </div>
           <button onClick={() => setIsSidePanelOpen(true)}>
-            <Hamburger className='size-8 invert ml-auto' />
+            <Hamburger className='size-8 invert ml-auto lg:hidden' />
           </button>
         </div>
         <div className="relative">
@@ -81,7 +81,10 @@ function App() {
           <AdditionalInformation coords={coords} />
         </Suspense>
       </div>
-      <SidePanel isSidePanelOpen={isSidePanelOpen} setIsSidePanelOpen={setIsSidePanelOpen} coords={coords} />
+      <SidePanel
+        isSidePanelOpen={isSidePanelOpen}
+        setIsSidePanelOpen={setIsSidePanelOpen}
+        coords={coords} />
 
     </>
   );
