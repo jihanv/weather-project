@@ -17,7 +17,10 @@ export default function CurrentWeather({ coords }: ForecastProps) {
     // const data = mock_weather
     return (
         <>
-            <Card title="Current Weather" childrenClassName='flex flex-col items-center gap-6'>
+            <Card
+                title="Current Weather"
+                childrenClassName='flex flex-col items-center gap-6'
+                className='md:pb-11'>
                 <div className='flex flex-col gap-2  items-center'>
                     <h2 className='text-6xl font-semibold text-center'>{Math.round(data.current.temp)}°C</h2>
                     <WeatherIcon alt="Weather Icon" src={data.current.weather[0].icon} className='size-14' />
