@@ -64,7 +64,7 @@ function App() {
           </button>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2  2xl:grid-cols-4 2xl:grid-rows-4 gap-4">
-          <div className="relative h-120 col-span-1 md:col-span-2 2xl:col-span-4 2xl:row-span-2">
+          <div className="relative h-120 2xl:h-auto col-span-1 md:col-span-2 2xl:col-span-4 2xl:row-span-2">
             <Map coords={coords} onMapClick={onMapClick} layer={layer} />
             <MapLegend mapType={layer} />
           </div>

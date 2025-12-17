@@ -26,8 +26,7 @@ export default function Map({ coords, onMapClick, layer }: Props) {
                 <TileLayer
                     opacity={0.7}
                     url={`https://tile.openweathermap.org/map/${layer}/{z}/{x}/{y}.png?appid=${API_KEY}`} />
-                <Marker position={[lat, long]}>
-                </Marker>
+                <Marker position={[lat, long]} />
             </MapContainer>
         </>
     )
