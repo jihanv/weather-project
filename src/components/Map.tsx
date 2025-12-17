@@ -20,11 +20,11 @@ export default function Map({ coords, onMapClick, layer }: Props) {
             <MapContainer
                 center={[lat, long]}
                 zoom={5}
-                style={{ width: "100%", height: "500px" }} >
+                style={{ width: "100%", height: "100%" }} >
                 <MapClick onMapClick={onMapClick} coords={coords} />
                 <MapTileLayer />
                 <TileLayer
-                    opacity={0.5}
+                    opacity={0.7}
                     url={`https://tile.openweathermap.org/map/${layer}/{z}/{x}/{y}.png?appid=${API_KEY}`} />
                 <Marker position={[lat, long]}>
                 </Marker>
@@ -66,19 +66,5 @@ function MapTileLayer() {
             map.removeLayer(tileLayer)
         }
     }, [map])
-
-    // useEffect(() => {
-    //     const layer = (L as any).maptilerLayer({
-    //         apiKey: MAP_TILER_KEY,
-    //         style: "basic-v2" // ← must be a valid MapTiler style ID
-    //     });
-
-    //     layer.addTo(map);
-
-    //     return () => {
-    //         map.removeLayer(layer);
-    //     };
-    // }, [map]);
-
     return null
 }

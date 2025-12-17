@@ -14,7 +14,6 @@ export default function CurrentWeather({ coords }: ForecastProps) {
             lon: coords.long
         })
     })
-    // const data = mock_weather
     return (
         <>
             <Card
