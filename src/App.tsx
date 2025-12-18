@@ -63,28 +63,28 @@ function App() {
             <Hamburger className='size-8 invert ml-auto lg:hidden' />
           </button>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2  2xl:grid-cols-4 2xl:grid-rows-4 gap-4">
-          <div className="relative h-120 2xl:h-auto col-span-1 md:col-span-2 2xl:col-span-4 2xl:row-span-2">
+        <div className="grid grid-cols-1 2xl:flex-1 2xl:min-h-0 md:grid-cols-2 2xl:grid-cols-4 2xl:grid-rows-4 gap-4">
+          <div className="relative h-120 2xl:h-auto col-span-1 md:col-span-2 2xl:col-span-4 2xl:row-span-2 order-1">
             <Map coords={coords} onMapClick={onMapClick} layer={layer} />
             <MapLegend mapType={layer} />
           </div>
-          <div className="col-span-1 2xl:row-span-2">
+          <div className="col-span-1 2xl:row-span-2 order-2">
             <Suspense fallback={<CurrentSkeleton />}>
               <CurrentWeather coords={coords} />
             </Suspense>
           </div>
-          <div className="col-span-1">
+          <div className="col-span-1 2xl:row-span-2 order-3 2xl:order-4">
             <Suspense fallback={<DailySkeleton />}>
               <DailyForecast coords={coords} />
             </Suspense>
           </div>
-          <div className="col-span-1 md:col-span-2">
+          <div className="col-span-1 md:col-span-2 2xl:row-span-1 order-4 2xl:order-3">
             <Suspense fallback={<HourlySkeleton />}>
               <HourlyForecast coords={coords} />
             </Suspense>
           </div>
 
-          <div className="col-span-1 md:col-span-2">
+          <div className="col-span-1 md:col-span-2 2xl:row-span-1 order-5">
             <Suspense fallback={<AdditionalInfoSkeleton />}>
               <AdditionalInformation coords={coords} />
             </Suspense>

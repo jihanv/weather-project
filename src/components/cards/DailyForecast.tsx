@@ -20,7 +20,7 @@ export default function DailyForecast({ coords }: ForecastProps) {
     return (
 
         <>
-            <Card title="Daily Forecast" childrenClassName='flex flex-col gap-4'>
+            <Card title="Daily Forecast" childrenClassName='flex flex-col gap-4 2xl:justify-between'>
                 {data.daily.map((day) => {
                     return (
                         <div
