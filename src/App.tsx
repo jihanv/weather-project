@@ -50,16 +50,16 @@ function App() {
     <>
 
       <div className="flex flex-col gap-8 p-8 xs:pt-8 lg:w-[calc(100dvw-var(--sidebar-width))]  2xl:h-screen">
-        <div className="flex flex-col md:flex-row gap-2 md:gap-4">
-          <div className="flex gap-4">
+        <div className="flex flex-col gap-4 xs:flex-row xs:gap-8">
+          <div className="flex flex-col md:flex-row gap-2 md:gap-4">
             <h1 className="text-2xl font-semibold ">Location:</h1>
             <LocationDropdown location={location} setLocation={setLocation} />
           </div>
-          <div className="flex gap-4">
+          <div className="flex flex-col md:flex-row gap-2 md:gap-4">
             <h1 className="text-2xl font-semibold whitespace-nowrap">Map Type:</h1>
             <MapTypeDropdown layer={layer} setLayer={setLayer} />
           </div>
-          <button onClick={() => setIsSidePanelOpen(true)}>
+          <button onClick={() => setIsSidePanelOpen(true)} className="hidden xs:block">
             <Hamburger className='size-6 invert ml-auto lg:hidden' />
           </button>
         </div>

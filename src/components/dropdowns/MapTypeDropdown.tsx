@@ -36,7 +36,7 @@ export default function MapTypeDropdown({ layer, setLayer }: MapTypeDropdownProp
     return (
         <>
             <Select value={layer} onValueChange={(value) => setLayer(value)}>
-                <SelectTrigger className="w-[180px]">
+                <SelectTrigger className="w-full xs:w-[180px]">
                     <SelectValue />
                 </SelectTrigger>
                 <SelectContent className="z-1001">
