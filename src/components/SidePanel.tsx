@@ -89,43 +89,41 @@ function AirPollution({ coords }: Props) {
                         }
                     })()
                     return (
-                        <>
-                            <Card
-                                key={key}
-                                className='hover:scale-105 transition-transform duration-300 from-sidebar-accent to-sidebar-accent/60 gap-0!'
-                                childrenClassName='flex flex-col gap-3'
-                            >
-                                <div className='flex justify-between'>
-                                    <div className='flex items-center gap-2'>
-                                        <span className='text-lg font-bold capitalize'>{key}</span>
-                                        <Tooltip>
-                                            <TooltipTrigger asChild>
-                                                <Information className='size-4 invert' />
-                                            </TooltipTrigger>
-                                            <TooltipContent className='z-2000'>
-                                                <p className='max-w-xs'>Concentration of {pollutantNameMapping[key.toUpperCase() as Pollutant]}</p>
-                                            </TooltipContent>
-                                        </Tooltip>
-                                    </div>
-                                    <span className='text-lg font-semibold'>{value}</span>
+                        <Card
+                            key={key}
+                            className='hover:scale-105 transition-transform duration-300 from-sidebar-accent to-sidebar-accent/60 gap-0!'
+                            childrenClassName='flex flex-col gap-3'
+                        >
+                            <div className='flex justify-between'>
+                                <div className='flex items-center gap-2'>
+                                    <span className='text-lg font-bold capitalize'>{key}</span>
+                                    <Tooltip>
+                                        <TooltipTrigger asChild>
+                                            <Information className='size-4 invert' />
+                                        </TooltipTrigger>
+                                        <TooltipContent className='z-2000'>
+                                            <p className='max-w-xs'>Concentration of {pollutantNameMapping[key.toUpperCase() as Pollutant]}</p>
+                                        </TooltipContent>
+                                    </Tooltip>
                                 </div>
-                                <Slider min={0} max={max} value={[value]} disabled />
-                                <div className='flex justify-between text-xs'>
-                                    <p>0</p>
-                                    <p>{max}</p>
-                                </div>
-                                <div className='flex justify-between'>
-                                    {Object.keys(pollutant).map((quality) => (
-                                        <span className={clsx('px-2 py-1 rounded-md text-xs font-medium', quality === currentLevel
-                                            ? `${qualityColor} text-black`
-                                            : `bg-muted text-muted-foreground`)}>
-                                            {quality}
-                                        </span>
-                                    ))}
-                                </div>
-                            </Card>
+                                <span className='text-lg font-semibold'>{value}</span>
+                            </div>
+                            <Slider min={0} max={max} value={[value]} disabled />
+                            <div className='flex justify-between text-xs'>
+                                <p>0</p>
+                                <p>{max}</p>
+                            </div>
+                            <div className='flex justify-between'>
+                                {Object.keys(pollutant).map((quality, index) => (
+                                    <span key={index} className={clsx('px-2 py-1 rounded-md text-xs font-medium', quality === currentLevel
+                                        ? `${qualityColor} text-black`
+                                        : `bg-muted text-muted-foreground`)}>
+                                        {quality}
+                                    </span>
+                                ))}
+                            </div>
+                        </Card>
 
-                        </>
                     )
                 })}
 

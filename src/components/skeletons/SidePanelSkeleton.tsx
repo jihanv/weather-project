@@ -12,12 +12,10 @@ export default function SidePanelSkeleton() {
                 </div>
                 {Array.from({ length: 8 }).map((_, index) =>
                 (
-                    <>
-                        <SidePanelCardSkeleton
-                            key={index}
-                        >
-                        </SidePanelCardSkeleton>
-                    </>
+                    <SidePanelCardSkeleton
+                        key={index}
+                    >
+                    </SidePanelCardSkeleton>
                 ))}
             </div>
         </>
