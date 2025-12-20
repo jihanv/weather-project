@@ -19,6 +19,7 @@ import DailySkeleton from "./components/skeletons/DailySkeleton";
 import AdditionalInfoSkeleton from "./components/skeletons/AdditionalInfoSkeleton";
 import SidePanel from "./components/SidePanel";
 import Hamburger from "/src/assets/hamburger.svg?react"
+import MobileHeader from "./components/MobileHeader";
 
 function App() {
   const [coordinates, setCoords] = useState<Coordinates>({
@@ -48,8 +49,8 @@ function App() {
 
   return (
     <>
-
-      <div className="flex flex-col gap-8 p-8 xs:pt-8 lg:w-[calc(100dvw-var(--sidebar-width))]  2xl:h-screen">
+      <MobileHeader setIsSidePanelOpen={setIsSidePanelOpen} />
+      <div className="flex flex-col gap-8 pt-4 p-8 xs:pt-8 lg:w-[calc(100dvw-var(--sidebar-width))]  2xl:h-screen">
         <div className="flex flex-col gap-4 xs:flex-row xs:gap-8">
           <div className="flex flex-col md:flex-row gap-2 md:gap-4">
             <h1 className="text-2xl font-semibold ">Location:</h1>
