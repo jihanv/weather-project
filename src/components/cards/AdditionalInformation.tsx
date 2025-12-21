@@ -24,7 +24,7 @@ export default function AdditionalInformation({ coords }: ForecastProps) {
     // const data = mock_weather
     return (
         <>
-            <Card title="Additional Weather Info " childrenClassName='grid grid-cols-1 md:grid-cols-2 gap-8'>
+            <Card title="Additional Weather Info " childrenClassName='grid grid-cols-1 md:grid-cols-2 gap-4'>
                 {rows.map(({ label, value, Icon }) => (
                     <div key={label} className="flex justify-between">
                         <div className="flex gap-4">
